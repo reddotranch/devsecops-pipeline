@@ -1,6 +1,9 @@
-# Build stage
-FROM alpine:latest AS build
-RUN apk update && apk add --no-cache libxml2
+FROM ubuntu:latest
+
+# Install Node.js and npm
+RUN apt-get update && \
+    apt-get install -y nodejs npm && \
+    apt-get clean
 WORKDIR /app
 COPY package*.json ./
 RUN npm ci
