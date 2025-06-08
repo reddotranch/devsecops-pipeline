@@ -1,5 +1,5 @@
 # Build stage
-FROM alpine:latest as build
+FROM alpine:latest AS build
 RUN apk update && apk add --no-cache libxml2
 WORKDIR /app
 COPY package*.json ./
