@@ -1,4 +1,4 @@
-FROM ubuntu:latest
+FROM ubuntu:latest AS build
 
 # Install Node.js and npm
 RUN apt-get update && \
