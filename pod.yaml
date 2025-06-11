@@ -1,0 +1,28 @@
+apiVersion: v1 # String
+kind: Pod  # String
+metadata: # Dictionary
+  name: nginxbuild-pod
+  labels: # Dictionary 
+    app: nginxbuild         
+spec:
+  containers: # List
+    - name: nginxbuild
+      image: betechinc/nginxbuild:v1
+      ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginxbuild-nodeport-service  # Name of the Service
+spec:
+  type: NodePort
+  selector:
+  # Loadbalance traffic across Pods matching this label selector
+    app: nginxbuild
+  # Accept traffic sent to port 80    
+  ports: 
+    - name: http
+      port: 80    # Service Port
+      targetPort: 80 # Container Port
+      nodePort: 31231 # NodePort
