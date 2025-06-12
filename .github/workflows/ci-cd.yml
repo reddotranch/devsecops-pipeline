@@ -1,4 +1,4 @@
-name: CI/CD Pipeline
+name: CI/CD DevSec Pipeline
 
 on:
   push:
@@ -11,13 +11,9 @@ on:
 jobs:
   test:
     name: Unit Testing
-    runs-on: ubuntu-latest
+    #runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
-      - name: Upgrade libxml2
-        run: |
-          sudo apt update
-          sudo apt install libxml2 -y
-
       - name: Checkout code
         uses: actions/checkout@v4
       
@@ -37,11 +33,6 @@ jobs:
     name: Static Code Analysis
     runs-on: ubuntu-latest
     steps:
-      - name: Upgrade libxml2
-        run: |
-          sudo apt update
-          sudo apt install libxml2 -y
-
       - name: Checkout code
         uses: actions/checkout@v4
       
@@ -62,11 +53,6 @@ jobs:
     runs-on: ubuntu-latest
     needs: [test, lint]
     steps:
-      - name: Upgrade libxml2
-        run: |
-          sudo apt update
-          sudo apt install libxml2 -y
-
       - name: Checkout code
         uses: actions/checkout@v4
       
