@@ -1,9 +1,4 @@
-FROM ubuntu:latest AS build
-
-# Install Node.js and npm
-RUN apt-get update && \
-    apt-get install -y nodejs npm && \
-    apt-get clean
+FROM node:20-alpine AS build
 WORKDIR /app
 COPY package*.json ./
 RUN npm ci
